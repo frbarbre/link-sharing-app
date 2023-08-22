@@ -1,8 +1,11 @@
-import { createLink } from '@/lib/actions/link.actions';
+import { createLink, fetchLinks } from '@/lib/actions/link.actions';
 import { fetchUser } from '@/lib/actions/user.actions';
 import { UserButton, currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
-import AddLinks from '@/components/AddLinks';
+import { Link, Platforms } from '@/types';
+import Button from '@/components/Button';
+import Image from 'next/image';
+import LinkWrapper from '@/components/LinkWrapper';
 
 export default async function Home() {
   const user = await currentUser();
@@ -11,17 +14,38 @@ export default async function Home() {
   const userInfo = await fetchUser(user.id);
   if (!userInfo?.onboarded) redirect('/welcome');
 
-  await createLink({
-    author: userInfo?._id,
-    link: 'https://www.github.com/graakjae',
-    path: '/',
-    platform: 'Github',
-  });
+  const links: Link[] = await fetchLinks(userInfo._id);
+
+  console.log(links);
 
   return (
-    <main>
-      <UserButton />
-      <AddLinks/>
+    <main className="p-[40px]">
+      <h2>Customize your links</h2>
+      <p>
+        Add/edit/remove links below and then share all your profiles with the
+        world!
+      </p>
+      <Button userId={userInfo?._id} />
+      {links.length !== 0 ? (
+        <>
+          {links?.map((link) => (
+            <LinkWrapper
+              link={link.link}
+              platform={link.platform}
+              linkId={link._id}
+            />
+          ))}
+        </>
+      ) : (
+        <div>
+          <Image
+            src={'/illustration-empty.svg'}
+            alt="illustration"
+            width={200}
+            height={200}
+          />
+        </div>
+      )}
     </main>
   );
 }

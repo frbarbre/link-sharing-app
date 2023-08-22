@@ -13,5 +13,23 @@ export enum Platforms {
   gitlab = 'GitLab',
   hashnode = 'Hashnode',
   stackOverflow = 'Stack Overflow',
+}
 
+export interface User {
+  _id: string;
+  id: string;
+  email: string;
+  firstName: string;
+  image: string;
+  lastName: string;
+  links: Link[];
+  onboarded: boolean;
+}
+
+export interface Link {
+  _id: string;
+  link: string;
+  platform: Platforms;
+  author: string;
+  createdAt: number;
 }

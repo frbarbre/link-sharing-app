@@ -4,15 +4,21 @@ import { revalidatePath } from 'next/cache';
 import Link from '../models/link.model';
 import User from '../models/user.model';
 import { connectToDB } from '../mongoose';
+import { Platforms } from '@/types';
 
-interface Params {
-  platform: string;
+interface CreateParams {
+  platform: Platforms;
   link: string;
   author: string;
   path: string;
 }
 
-export async function createLink({ platform, author, link, path }: Params) {
+export async function createLink({
+  platform,
+  author,
+  link,
+  path,
+}: CreateParams) {
   try {
     connectToDB();
 
@@ -56,5 +62,65 @@ export async function deleteLink(id: string, path: string): Promise<void> {
     revalidatePath(path);
   } catch (error: any) {
     throw new Error(`Failed to delete link: ${error.message}`);
+  }
+}
+
+interface UpdatePlatform {
+  linkId: string;
+  platform: Platforms;
+  path?: string;
+}
+
+export async function updatePlatform({
+  linkId,
+  platform,
+  path,
+}: UpdatePlatform): Promise<void> {
+  try {
+    connectToDB();
+
+    await Link.findOneAndUpdate(
+      { _id: linkId },
+      {
+        platform,
+      },
+      { upsert: true }
+    );
+
+    if (path) {
+      revalidatePath(path);
+    }
+  } catch (error: any) {
+    throw new Error(`Failed to update link: ${error.message}`);
+  }
+}
+
+interface UpdateLink {
+  linkId: string;
+  link: string;
+  path?: string;
+}
+
+export async function updateUrl({
+  linkId,
+  link,
+  path,
+}: UpdateLink): Promise<void> {
+  try {
+    connectToDB();
+
+    await Link.findOneAndUpdate(
+      { _id: linkId },
+      {
+        link,
+      },
+      { upsert: true }
+    );
+
+    if (path) {
+      revalidatePath(path);
+    }
+  } catch (error: any) {
+    throw new Error(`Failed to update link: ${error.message}`);
   }
 }
