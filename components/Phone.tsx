@@ -22,8 +22,6 @@ export default async function Phone({
     emptyBoxArray.push("box")
   }
 
-  console.log(emptyBoxArray)
-
   return (
     <div className="max-h-phone bg-white hidden w-full max-w-[560px] md:flex items-center justify-center rounded-[8px] p-[40px]">
       <div className="relative h-full aspect-[307/631]">

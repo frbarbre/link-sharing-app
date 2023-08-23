@@ -22,7 +22,7 @@ export default async function Home() {
     <main className="p-[16px] md:p-[24px] gap-[24px] flex">
       <Phone userId={userInfo._id} clerkId={user.id} isLinkPage={true} />
       <div className='w-full'>
-        <section className="bg-white p-[24px] md:p-[40px] max-h-sm-screen md:max-h-md-screen overflow-scroll rounded-[8px]">
+        <section className="bg-white p-[24px] md:p-[40px] max-h-sm-phone md:max-h-phone overflow-scroll rounded-[8px]">
           <article>
             <h1 className="font-bold text-[24px] md:text-[32px] text-dark-gray">
               Customize your links
@@ -55,14 +55,6 @@ export default async function Home() {
               />
             </div>
           )}
-        </section>
-        <section className="h-[78px] md:h-[94px] flex justify-end items-center px-[16px] md:px-[40px] border-t bg-white rounded-b-[8px]">
-          <button
-            className={`w-full h-[46px] font-semibold px-[27px] transition-colors rounded-[8px] md:w-max bg-white border-primary-purple/25 border text-primary-purple/25 cursor-not-allowed`}
-            type="submit"
-          >
-            Autosaved
-          </button>
         </section>
       </div>
     </main>

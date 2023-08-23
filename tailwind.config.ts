@@ -25,12 +25,13 @@ const config: Config = {
       maxHeight: {
         'sm-screen': 'calc(100svh - 75.6px - 112px)',
         'md-screen': 'calc(100svh - 79.6px - 162px)',
-        'phone': 'calc(100svh - 79.6px - 162px + 94px)',
+        phone: 'calc(100svh - 79.6px - 162px + 94px)',
+        'sm-phone': 'calc(100svh - 79.6px - 112px + 83px)',
       },
       screens: {
-        md: "768px",
-        lg: "1440px"
-      }
+        md: '768px',
+        lg: '1440px',
+      },
     },
   },
   plugins: [],

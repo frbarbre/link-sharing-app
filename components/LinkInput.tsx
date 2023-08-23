@@ -18,12 +18,6 @@ export default function LinkInput({ platform, linkId, link }: Props) {
     setValue(e.target.value);
   }
 
-  useEffect(() => {
-    setTimeout(() => {
-      submitToDB();
-    }, 6000);
-  }, [value]);
-
   async function submitToDB() {
     await updateUrl({ linkId: linkId, link: value, path: '/' });
   }
@@ -45,9 +39,11 @@ export default function LinkInput({ platform, linkId, link }: Props) {
           placeholder={`e.g. https://www.${platform}.com/yourname`}
           className="w-full outline-none"
           onChange={handleChange}
+          onBlur={submitToDB}
           value={value}
         />
       </div>
+      {/* <button onClick={submitToDB}>Submit</button> */}
     </div>
   );
 }
