@@ -13,6 +13,7 @@ export enum Platforms {
   gitlab = 'GitLab',
   hashnode = 'Hashnode',
   stackOverflow = 'Stack Overflow',
+  onlyfans = "OnlyFans"
 }
 
 export interface User {

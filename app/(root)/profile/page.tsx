@@ -13,9 +13,7 @@ export default async function Page() {
 
   return (
     <main>
-      <section className="bg-white">
-        <h1>Profile Details</h1>
-        <p>Add your details to create a personal touch to your profile.</p>
+      <section className="bg-white m-[16px] md:m-[24px] rounded-[8px]">
         <ProfileForm
           email={userInfo.email}
           firstName={userInfo.firstName}

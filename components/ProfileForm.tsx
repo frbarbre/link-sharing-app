@@ -2,11 +2,8 @@
 
 import { updateUser } from '@/lib/actions/user.actions';
 import { useState } from 'react';
-
-import { UploadButton } from '@uploadthing/react';
-import { OurFileRouter } from '@/app/api/uploadthing/core';
-import Image from 'next/image';
-import { motion as m } from 'framer-motion';
+import Input from './Input';
+import UploadImage from './UploadImage';
 
 export default function ProfileForm({
   firstName,
@@ -30,8 +27,14 @@ export default function ProfileForm({
     []
   );
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<{ message: string; isActive: boolean }>({
+    message: '',
+    isActive: false,
+  });
+  const [isSaved, setIsSaved] = useState(true);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setIsSaved(false);
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -39,6 +42,7 @@ export default function ProfileForm({
   }
 
   async function handleSubmit(e: React.FormEvent) {
+    setIsSaved(true);
     e.preventDefault();
     submitUserToDB();
   }
@@ -55,102 +59,62 @@ export default function ProfileForm({
     });
   }
 
-  console.log(image);
-
   return (
     <form onSubmit={handleSubmit}>
-      <section>
-        <p>Profile Picture</p>
-        <div
-          style={{ backgroundImage: `url("${images[0]?.fileUrl || image}")` }}
-          className="relative w-full max-w-[193px] aspect-square bg-cover bg-no-repeat bg-center bg-light-purple rounded-[12px]"
-        >
-          {image === "" && images.length === 0 ? (
-            <div>Upload</div>
-          ) : (
-            <div className="absolute inset-0 bg-black/20 rounded-[12px]">Change</div>
-          )}
-          {loading && (
-            <m.div
-              className="absolute inset-0 flex items-center justify-center"
-              initial={{ rotate: 0 }}
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 0.5, mass: 0.3 }}
-            >
-              <Image
-                src={'/icon-loading.svg'}
-                alt="loading-icon"
-                width={40}
-                height={40}
-              />
-            </m.div>
-          )}
-          <UploadButton<OurFileRouter>
-            appearance={{
-              button: {
-                opacity: 0,
-                position: 'absolute',
-                inset: 0,
-                backgroundColor: 'red',
-                width: '100%',
-                height: '100%',
-              },
-              allowedContent: {
-                opacity: 0,
-              },
-            }}
-            endpoint="media"
-            onUploadProgress={() => {
-              setLoading(true);
-            }}
-            onClientUploadComplete={(res) => {
-              setLoading(false);
-              if (res) {
-                setImages(res);
-              }
-            }}
-            onUploadError={(error: Error) => {
-              // Do something with the error.
-              alert(`ERROR! ${error.message}`);
-            }}
-          />
-        </div>
-      </section>
-      <section>
-        <div>
-          <p>First Name*</p>
-          <input
-            type="text"
+      <section className="flex flex-col gap-[24px] max-h-sm-screen md:max-h-md-screen overflow-scroll p-[24px] md:p-[40px]">
+        <article>
+          <h1 className="font-bold text-[24px] md:text-[32px] text-dark-gray">
+            Profile Details
+          </h1>
+          <p className="text-medium-gray pt-[8px]">
+            Add your details to create a personal touch to your profile.
+          </p>
+        </article>
+        <UploadImage
+          image={image}
+          images={images}
+          setImages={setImages}
+          loading={loading}
+          setLoading={setLoading}
+          error={error}
+          setError={setError}
+        />
+        <section className="bg-near-white p-[20px] flex flex-col gap-[12px] rounded-[8px]">
+          <Input
             name="firstName"
             value={form.firstName}
-            onChange={handleChange}
             placeholder="e.g. John"
+            handleChange={handleChange}
+            title="First Name*"
           />
-        </div>
-
-        <div>
-          <p>Last Name*</p>
-          <input
-            type="text"
+          <Input
             name="lastName"
             value={form.lastName}
-            onChange={handleChange}
             placeholder="e.g. Appleseed"
+            handleChange={handleChange}
+            title="Last Name*"
           />
-        </div>
-
-        <div>
-          <p>Email</p>
-          <input
-            type="text"
+          <Input
             name="email"
             value={form.email}
-            onChange={handleChange}
             placeholder="e.g. email@example.com"
+            handleChange={handleChange}
+            title="Email"
           />
-        </div>
+        </section>
       </section>
-      <button type="submit">Save</button>
+      <section className="h-[78px] md:h-[94px] flex justify-end items-center px-[16px] md:px-[40px] border-t">
+        <button
+          className={`w-full h-[46px] rounded-[8px] font-semibold px-[27px] transition-colors md:w-max ${
+            isSaved
+              ? 'bg-white border border-primary-purple/25 text-primary-purple/25 cursor-not-allowed'
+              : 'bg-primary-purple hover:bg-pale-purple text-white'
+          }`}
+          type="submit"
+        >
+          {isSaved ? 'Saved' : 'Save'}
+        </button>
+      </section>
     </form>
   );
 }

@@ -18,7 +18,7 @@ export default function Button({ userId }: { userId: string }) {
       onClick={createNewLink}
       className="border-primary-purple text-primary-purple w-full border hover:bg-light-purple cursor-pointer rounded-[8px]"
     >
-      <p className="text-center p-2">+ Add new link</p>
+      <p className="text-center font-semibold p-2">+ Add new link</p>
     </div>
   );
 }

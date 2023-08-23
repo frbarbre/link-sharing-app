@@ -20,6 +20,11 @@ const config: Config = {
       },
       boxShadow: {
         'purple-shadow': '0px 0px 32px 0px rgba(99, 60, 255, 0.25)',
+        box: '0px 0px 32px 0px rgba(0, 0, 0, 0.10)',
+      },
+      maxHeight: {
+        'sm-screen': 'calc(100svh - 75.6px - 112px)',
+        'md-screen': 'calc(100svh - 79.6px - 162px)',
       },
     },
   },

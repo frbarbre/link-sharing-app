@@ -13,6 +13,7 @@ import freeCodeCamp from '../public/icon-freecodecamp.svg';
 import gitlab from '../public/icon-gitlab.svg';
 import hashnode from '../public/icon-hashnode.svg';
 import stackOverflow from '../public/icon-stack-overflow.svg';
+import onlyFans from '../public/icon-onlyfans.svg';
 
 export const links = [
   {
@@ -85,6 +86,11 @@ export const links = [
     img: stackOverflow,
     backgroundColor: '#EC7100',
   },
+  {
+    name: Platforms.onlyfans,
+    img: onlyFans,
+    backgroundColor: "#00AEEF"
+  }
 ];
 
 export const navLinks = [

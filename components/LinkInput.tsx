@@ -30,7 +30,7 @@ export default function LinkInput({ platform, linkId, link }: Props) {
 
   return (
     <div>
-      <h2>Link</h2>
+      <h2 className='text-dark-gray text-[12px] pb-[4px]'>Link</h2>
       <div className="flex items-center border border-light-gray hover:shadow-purple-shadow px-5 py-3 bg-white rounded-[8px]">
         <Image
           src="/icon-link.svg"
