@@ -18,8 +18,13 @@ export default function LinkInput({ platform, linkId, link }: Props) {
     setValue(e.target.value);
   }
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
+  useEffect(() => {
+    setTimeout(() => {
+      submitToDB();
+    }, 4000);
+  }, [value]);
+
+  async function submitToDB() {
     await updateUrl({ linkId: linkId, link: value, path: '/' });
   }
 
@@ -34,15 +39,14 @@ export default function LinkInput({ platform, linkId, link }: Props) {
           height={15}
           className="mr-4"
         />
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder={`e.g. https://www.${platform}.com/yourname`}
-            className="w-full outline-none"
-            onChange={handleChange}
-            value={value}
-          />
-        </form>
+
+        <input
+          type="text"
+          placeholder={`e.g. https://www.${platform}.com/yourname`}
+          className="w-full outline-none"
+          onChange={handleChange}
+          value={value}
+        />
       </div>
     </div>
   );

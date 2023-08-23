@@ -12,7 +12,7 @@ import Link from 'next/link';
 export default function Navbar({ userId }: { userId: string | null }) {
   const pathname = usePathname();
   return (
-    <header className="flex justify-between items-center bg-white p-[16px] pl-[24px] md:m-[24px] md:rounded-[12px]">
+    <header className="flex justify-between items-center bg-white p-[16px] pl-[24px] md:m-[24px] mb-0 md:mb-0 md:rounded-[12px]">
       {pathname.includes('/preview') ? (
         <>
           <Link href={"/"}>Back to Editor</Link>

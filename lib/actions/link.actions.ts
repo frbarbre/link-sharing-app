@@ -7,7 +7,7 @@ import { connectToDB } from '../mongoose';
 import { Platforms } from '@/types';
 
 interface CreateParams {
-  platform: Platforms;
+  platform: Platforms | "empty";
   link: string;
   author: string;
   path: string;
@@ -67,7 +67,7 @@ export async function deleteLink(id: string, path: string): Promise<void> {
 
 interface UpdatePlatform {
   linkId: string;
-  platform: Platforms;
+  platform: Platforms | "empty";
   path?: string;
 }
 

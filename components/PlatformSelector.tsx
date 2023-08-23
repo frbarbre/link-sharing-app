@@ -7,7 +7,7 @@ import { Platforms } from '@/types';
 import { updatePlatform } from '@/lib/actions/link.actions';
 
 interface Props {
-  platform: Platforms;
+  platform: Platforms | 'empty';
   linkId: string;
 }
 
@@ -15,13 +15,11 @@ export default function PlatformSelector({ platform, linkId }: Props) {
   const [selector, setSelector] = useState(false);
 
   const currentPlatform = links.find((link) => link.name === platform);
-  if (!currentPlatform) return null;
 
   async function setPlatform(input: Platforms) {
     updatePlatform({ linkId: linkId, platform: input, path: '/' });
   }
 
-  console.log(platform);
   return (
     <div>
       <h2>Platform</h2>
@@ -34,18 +32,15 @@ export default function PlatformSelector({ platform, linkId }: Props) {
           className="flex items-center justify-between w-full px-5 hover:shadow-purple-shadow cursor-pointer py-3 border border-light-gray"
         >
           <div className="flex items-center">
-            <currentPlatform.img
-              fill="#737373"
-              src={currentPlatform.img}
-              alt={currentPlatform.name}
-              className="mr-4"
-            />
-            <p className="mt-[2px]">{currentPlatform.name}</p>
+            {currentPlatform && (
+              <currentPlatform.img fill="#737373" className="mr-4" />
+            )}
+            <p className="mt-[2px]">
+              {currentPlatform?.name || 'Select a Platform'}
+            </p>
           </div>
           <ChevronDown
             stroke="#633CFF"
-            src={ChevronDown}
-            alt="chevron"
             className={`${selector ? 'rotate-180' : ''}`}
           />
         </div>
@@ -63,8 +58,6 @@ export default function PlatformSelector({ platform, linkId }: Props) {
             >
               <link.img
                 fill={`${link.name === platform ? '#633CFF' : '#737373'}`}
-                src={link.name}
-                alt={link.name}
                 className="mr-4"
               />
               <p

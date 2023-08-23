@@ -1,20 +1,15 @@
 'use client';
 
 import { createLink } from "@/lib/actions/link.actions";
-import { Platforms } from "@/types";
 
 export default function Button({ userId }: { userId: string }) {
-
-  async function updateLink() {
-    
-  }
 
   async function createNewLink() {
     await createLink({
       author: userId,
-      link: 'https://www.github.com/graakjae',
+      link: '',
       path: '/',
-      platform: Platforms.facebook,
+      platform: "empty",
     });
   }
 

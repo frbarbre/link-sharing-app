@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 
 const linkSchema = new mongoose.Schema({
-  link: { type: String, required: true },
-  platform: { type: String, required: true, unique: true },
-  author: { type: mongoose.Schema.Types.ObjectId, ref: 'User', require: true },
+  link: { type: String },
+  platform: { type: String },
+  author: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   createdAt: {
     type: Date,
     default: Date.now,
