@@ -43,7 +43,6 @@ export default function LinkInput({ platform, linkId, link }: Props) {
           value={value}
         />
       </div>
-      {/* <button onClick={submitToDB}>Submit</button> */}
     </div>
   );
 }
