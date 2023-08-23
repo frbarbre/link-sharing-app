@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={instrumentSans.className}>{children}</body>
+        <body className={`${instrumentSans.className} min-h-[100svh] flex items-center justify-center bg-near-white`}>{children}</body>
       </html>
     </ClerkProvider>
   );

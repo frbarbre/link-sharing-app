@@ -61,7 +61,7 @@ export default function ProfileForm({
 
   return (
     <form onSubmit={handleSubmit}>
-      <section className="flex flex-col gap-[24px] max-h-sm-screen md:max-h-md-screen overflow-scroll p-[24px] md:p-[40px]">
+      <section className="flex flex-col gap-[24px] h-sm-screen md:h-md-screen md:max-h-[618px] overflow-y-scroll p-[24px] md:p-[40px]">
         <article>
           <h1 className="font-bold text-[24px] md:text-[32px] text-dark-gray">
             Profile Details

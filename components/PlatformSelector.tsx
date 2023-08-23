@@ -1,5 +1,6 @@
 'use client';
-import { links } from '@/constants';
+
+import { linksData } from '@/constants';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import ChevronDown from '../public/icon-chevron-down.svg';
@@ -14,7 +15,7 @@ interface Props {
 export default function PlatformSelector({ platform, linkId }: Props) {
   const [selector, setSelector] = useState(false);
 
-  const currentPlatform = links.find((link) => link.name === platform);
+  const currentPlatform = linksData.find((link) => link.name === platform);
 
   async function setPlatform(input: Platforms) {
     updatePlatform({ linkId: linkId, platform: input, path: '/' });
@@ -22,14 +23,14 @@ export default function PlatformSelector({ platform, linkId }: Props) {
 
   return (
     <div>
-      <h2 className='text-dark-gray text-[12px] pb-[4px]'>Platform</h2>
+      <h2 className="text-dark-gray text-[12px] pb-[4px]">Platform</h2>
       <div
         onClick={() => setSelector(!selector)}
         className="bg-white rounded-[8px] relative"
       >
         <div
           key={nanoid()}
-          className="flex items-center justify-between w-full px-5 hover:shadow-purple-shadow cursor-pointer py-3 border border-light-gray rounded-[8px]"
+          className="flex items-center justify-between w-full px-5 hover:shadow-purple-shadow transition-shadow cursor-pointer py-3 border border-light-gray rounded-[8px]"
         >
           <div className="flex items-center">
             {currentPlatform && (
@@ -45,8 +46,8 @@ export default function PlatformSelector({ platform, linkId }: Props) {
           />
         </div>
         {selector && (
-          <div className="border border-light-gray absolute w-full bg-white top-[58.8px] shadow-box max-h-[254px] overflow-scroll z-10 rounded-[8px]">
-            {links.map((link) => (
+          <div className="border border-light-gray absolute w-full bg-white top-[58.8px] shadow-box max-h-[203.2px] overflow-y-scroll z-50 rounded-[8px]">
+            {linksData.map((link) => (
               <div
                 key={nanoid()}
                 className="flex items-center w-full px-5 py-3 border-b cursor-pointer hover:bg-light-purple"
@@ -60,8 +61,8 @@ export default function PlatformSelector({ platform, linkId }: Props) {
                   className="mr-4"
                 />
                 <p
-                  className={`text-${
-                    link.name === platform ? '[#633CFF]' : '[#737373]'
+                  className={`${
+                    link.name === platform ? 'text-[#633CFF]' : 'text-[#737373]'
                   } mt-[2px]`}
                 >
                   {link.name}

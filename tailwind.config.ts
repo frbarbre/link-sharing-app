@@ -25,8 +25,22 @@ const config: Config = {
       maxHeight: {
         'sm-screen': 'calc(100svh - 75.6px - 112px)',
         'md-screen': 'calc(100svh - 79.6px - 162px)',
-        phone: 'calc(100svh - 79.6px - 162px + 94px)',
         'sm-phone': 'calc(100svh - 79.6px - 112px + 83px)',
+        'md-phone': 'calc(100svh - 79.6px - 162px + 94px)',
+      },
+      minHeight: {
+        'sm-screen': 'calc(100svh - 75.6px - 112px)',
+        'md-screen': 'calc(100svh - 79.6px - 162px)',
+        'sm-phone': 'calc(100svh - 79.6px - 112px + 83px)',
+        'md-phone': 'calc(100svh - 79.6px - 162px + 94px)',
+      },
+      height: {
+        'sm-screen': 'calc(100svh - 75.6px - 112px)',
+        'md-screen': 'calc(100svh - 79.6px - 162px)',
+        'sm-phone': 'calc(100svh - 79.6px - 112px + 83px)',
+        'md-phone': 'calc(100svh - 79.6px - 162px + 94px)',
+        'sm-no-link': 'calc(100svh - 358px)',
+        'md-no-link': 'calc(100svh - 418px)',
       },
       screens: {
         md: '768px',

@@ -15,7 +15,7 @@ import hashnode from '../public/icon-hashnode.svg';
 import stackOverflow from '../public/icon-stack-overflow.svg';
 import onlyFans from '../public/icon-onlyfans.svg';
 
-export const links = [
+export const linksData = [
   {
     name: Platforms.github,
     img: github,

@@ -12,7 +12,7 @@ export default function LinkCard({
   linkNumber,
 }: {
   link: string;
-  platform: Platforms;
+  platform: Platforms | "empty";
   linkId: string;
   linkNumber: number;
 }) {

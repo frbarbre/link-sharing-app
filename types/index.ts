@@ -30,7 +30,7 @@ export interface User {
 export interface Link {
   _id: string;
   link: string;
-  platform: Platforms;
+  platform: Platforms | "empty";
   author: string;
   createdAt: number;
 }

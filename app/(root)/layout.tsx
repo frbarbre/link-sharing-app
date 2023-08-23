@@ -26,8 +26,10 @@ export default async function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`${instrumentSans.className} bg-near-white`}>
-          <Navbar userId={user?.id} />
-          {children}
+          <div className='max-w-[1800px] mx-auto'>
+            <Navbar userId={user?.id} />
+            {children}
+          </div>
         </body>
       </html>
     </ClerkProvider>

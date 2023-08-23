@@ -4,10 +4,10 @@ import { currentUser } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 import { Link, User } from '@/types';
 import Button from '@/components/Button';
-import Image from 'next/image';
 import LinkCard from '@/components/LinkCard';
 import Phone from '@/components/Phone';
 import { nanoid } from 'nanoid';
+import NoLinks from '@/components/NoLinks';
 
 export default async function Home() {
   const user = await currentUser();
@@ -22,7 +22,7 @@ export default async function Home() {
     <main className="p-[16px] md:p-[24px] gap-[24px] flex">
       <Phone userId={userInfo._id} clerkId={user.id} isLinkPage={true} />
       <div className='w-full'>
-        <section className="bg-white p-[24px] md:p-[40px] max-h-sm-phone md:max-h-phone overflow-scroll rounded-[8px]">
+        <section className="bg-white p-[24px] md:p-[40px] h-sm-phone md:h-md-phone md:max-h-[712px] overflow-y-scroll rounded-[8px]">
           <article>
             <h1 className="font-bold text-[24px] md:text-[32px] text-dark-gray">
               Customize your links
@@ -34,7 +34,7 @@ export default async function Home() {
           </article>
           <Button userId={userInfo?._id} />
           {links.length !== 0 ? (
-            <article className="flex flex-col gap-[24px] mt-[24px]">
+            <article className="flex flex-col gap-[24px] mt-[24px] pb-[120px]">
               {links?.map((link, index) => (
                 <LinkCard
                   linkNumber={index + 1}
@@ -46,14 +46,7 @@ export default async function Home() {
               ))}
             </article>
           ) : (
-            <div>
-              <Image
-                src={'/illustration-empty.svg'}
-                alt="illustration"
-                width={200}
-                height={200}
-              />
-            </div>
+            <NoLinks />
           )}
         </section>
       </div>
