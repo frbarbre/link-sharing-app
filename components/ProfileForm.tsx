@@ -78,6 +78,7 @@ export default function ProfileForm({
           setLoading={setLoading}
           error={error}
           setError={setError}
+          setIsSaved={setIsSaved}
         />
         <section className="bg-near-white p-[20px] flex flex-col gap-[12px] rounded-[8px]">
           <Input

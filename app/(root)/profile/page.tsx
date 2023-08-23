@@ -1,3 +1,4 @@
+import Phone from '@/components/Phone';
 import ProfileForm from '@/components/ProfileForm';
 import { fetchUser } from '@/lib/actions/user.actions';
 import { User } from '@/types';
@@ -12,8 +13,9 @@ export default async function Page() {
   if (!userInfo?.onboarded) redirect('/welcome');
 
   return (
-    <main>
-      <section className="bg-white m-[16px] md:m-[24px] rounded-[8px]">
+    <main className="flex gap-[24px] m-[16px] md:m-[24px]">
+      <Phone userId={userInfo._id} clerkId={user.id} />
+      <section className="bg-white rounded-[8px] w-full">
         <ProfileForm
           email={userInfo.email}
           firstName={userInfo.firstName}

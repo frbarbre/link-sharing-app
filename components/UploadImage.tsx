@@ -11,6 +11,7 @@ interface Props {
   setLoading: (loading: boolean) => void;
   error: { message: string; isActive: boolean };
   setError: (error: { message: string; isActive: boolean }) => void;
+  setIsSaved: (isSaved: boolean) => void;
 }
 
 export default function UploadImage({
@@ -21,6 +22,7 @@ export default function UploadImage({
   setLoading,
   error,
   setError,
+  setIsSaved,
 }: Props) {
   return (
     <section className="flex justify-between md:items-center flex-col md:flex-row bg-near-white p-[20px] rounded-[8px]">
@@ -103,7 +105,7 @@ export default function UploadImage({
             }}
             onClientUploadComplete={(res) => {
               setLoading(false);
-
+              setIsSaved(false);
               if (res) {
                 setImages(res);
               }

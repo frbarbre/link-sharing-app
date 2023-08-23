@@ -3,7 +3,7 @@
 import { updateUrl } from '@/lib/actions/link.actions';
 import { Platforms } from '@/types';
 import Image from 'next/image';
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Props {
   platform: Platforms;
@@ -21,7 +21,7 @@ export default function LinkInput({ platform, linkId, link }: Props) {
   useEffect(() => {
     setTimeout(() => {
       submitToDB();
-    }, 4000);
+    }, 6000);
   }, [value]);
 
   async function submitToDB() {
@@ -30,7 +30,7 @@ export default function LinkInput({ platform, linkId, link }: Props) {
 
   return (
     <div>
-      <h2 className='text-dark-gray text-[12px] pb-[4px]'>Link</h2>
+      <h2 className="text-dark-gray text-[12px] pb-[4px]">Link</h2>
       <div className="flex items-center border border-light-gray hover:shadow-purple-shadow px-5 py-3 bg-white rounded-[8px]">
         <Image
           src="/icon-link.svg"
