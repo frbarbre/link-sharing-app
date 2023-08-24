@@ -4,6 +4,7 @@ import { updateUser } from '@/lib/actions/user.actions';
 import { useState } from 'react';
 import Input from './Input';
 import UploadImage from './UploadImage';
+import Message from './Message';
 
 export default function ProfileForm({
   firstName,
@@ -32,6 +33,7 @@ export default function ProfileForm({
     isActive: false,
   });
   const [isSaved, setIsSaved] = useState(true);
+  const [messageActive, setMessageActive] = useState(false);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setIsSaved(false);
@@ -45,6 +47,10 @@ export default function ProfileForm({
     setIsSaved(true);
     e.preventDefault();
     submitUserToDB();
+    setMessageActive(true);
+    setTimeout(() => {
+      setMessageActive(false);
+    }, 300);
   }
 
   async function submitUserToDB() {
@@ -116,6 +122,11 @@ export default function ProfileForm({
           {isSaved ? 'Saved' : 'Save'}
         </button>
       </section>
+      <Message
+        isActive={messageActive}
+        text="Your changes have been successfully saved!"
+        image="/icon-changes-saved.svg"
+      />
     </form>
   );
 }

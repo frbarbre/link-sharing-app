@@ -6,7 +6,6 @@ import { nanoid } from 'nanoid';
 import ChevronDown from '../public/icon-chevron-down.svg';
 import { Platforms } from '@/types';
 import { updatePlatform } from '@/lib/actions/link.actions';
-import Message from './Message';
 
 interface Props {
   platform: Platforms | 'empty';
@@ -15,16 +14,11 @@ interface Props {
 
 export default function PlatformSelector({ platform, linkId }: Props) {
   const [selector, setSelector] = useState(false);
-  const [isSaved, setIsSaved] = useState(false);
 
   const currentPlatform = linksData.find((link) => link.name === platform);
 
   async function setPlatform(input: Platforms) {
     updatePlatform({ linkId: linkId, platform: input, path: '/' });
-    setIsSaved(true);
-    setTimeout(() => {
-      setIsSaved(false);
-    }, 3000);
   }
 
   return (
@@ -78,11 +72,6 @@ export default function PlatformSelector({ platform, linkId }: Props) {
           </div>
         )}
       </div>
-      <Message
-        isActive={isSaved}
-        text="Your changes have been successfully saved!"
-        image="/icon-changes-saved.svg"
-      />
     </div>
   );
 }

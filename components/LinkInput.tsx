@@ -4,7 +4,6 @@ import { updateUrl } from '@/lib/actions/link.actions';
 import { Platforms } from '@/types';
 import Image from 'next/image';
 import { useState } from 'react';
-import Message from './Message';
 
 interface Props {
   platform: Platforms | 'empty';
@@ -14,7 +13,6 @@ interface Props {
 
 export default function LinkInput({ platform, linkId, link }: Props) {
   const [value, setValue] = useState(link || '');
-  const [isSaved, setIsSaved] = useState(false);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setValue(e.target.value);
@@ -22,10 +20,6 @@ export default function LinkInput({ platform, linkId, link }: Props) {
 
   function handleBlur() {
     submitToDB();
-    setIsSaved(true);
-    setTimeout(() => {
-      setIsSaved(false);
-    }, 3000);
   }
   async function submitToDB() {
     await updateUrl({ linkId: linkId, link: value, path: '/' });
@@ -54,7 +48,6 @@ export default function LinkInput({ platform, linkId, link }: Props) {
           value={value}
         />
       </div>
-      <Message isActive={isSaved} text='Your changes have been successfully saved!' image='/icon-changes-saved.svg' />
     </div>
   );
 }
