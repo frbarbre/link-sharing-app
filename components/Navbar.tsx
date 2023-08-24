@@ -8,15 +8,45 @@ import Preview from './Preview';
 import SignOut from './SignOut';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { useState } from 'react';
+import { motion as m, AnimatePresence } from 'framer-motion';
+import Message from './Message';
 
 export default function Navbar({ userId }: { userId: string | null }) {
   const pathname = usePathname();
+  const [isCopied, setIsCopied] = useState(false);
+
+  function handleCopy() {
+    const baseUrl = 'https://link-sharing-app-frbarbre.vercel.app';
+    const fullUrl = baseUrl + pathname;
+    navigator.clipboard.writeText(fullUrl);
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 3000);
+  }
+
   return (
     <header className="flex justify-between items-center bg-white p-[16px] pl-[24px] md:m-[24px] mb-0 md:mb-0 md:rounded-[12px]">
       {pathname.includes('/preview') ? (
         <>
-          <Link href={'/'}>Back to Editor</Link>
-          <button></button>
+          <Link
+            href={'/'}
+            className="px-[27px] py-[11px] border border-primary-purple rounded-[8px] text-primary-purple font-semibold leading-[24px] hover:bg-light-purple transition-color"
+          >
+            Back to Editor
+          </Link>
+          <button
+            className="bg-primary-purple rounded-[8px] px-[27px] py-[11px] text-white font-semibold hover:bg-pale-purple transition-colors"
+            onClick={handleCopy}
+          >
+            Share Link
+          </button>
+          <Message
+            image="/icon-link-copied-to-clipboard.svg"
+            text="The link has been copied to your clipboard!"
+            isActive={isCopied}
+          />
         </>
       ) : (
         <>
