@@ -27,7 +27,11 @@ export default function Navbar({ userId }: { userId: string | null }) {
   }
 
   return (
-    <header className="flex justify-between items-center bg-white p-[16px] pl-[24px] md:m-[24px] mb-0 md:mb-0 md:rounded-[12px]">
+    <header
+      className={`flex justify-between items-center bg-white p-[16px] md:m-[24px] mb-0 md:mb-0 md:rounded-[12px] ${
+        pathname.includes('/preview') ? 'pl-[16px]' : 'pl-[24px]'
+      }`}
+    >
       {pathname.includes('/preview') ? (
         <>
           <Link

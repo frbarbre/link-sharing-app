@@ -50,7 +50,7 @@ export default function ProfileForm({
     setMessageActive(true);
     setTimeout(() => {
       setMessageActive(false);
-    }, 300);
+    }, 3000);
   }
 
   async function submitUserToDB() {

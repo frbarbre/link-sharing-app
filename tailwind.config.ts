@@ -33,6 +33,8 @@ const config: Config = {
         'md-screen': 'calc(100svh - 79.6px - 162px)',
         'sm-phone': 'calc(100svh - 79.6px - 112px + 83px)',
         'md-phone': 'calc(100svh - 79.6px - 162px + 94px)',
+        "sm-preview": 'calc(100svh - 79.6px)',
+        "md-preview": 'calc(100svh - 79.6px - 24px)',
       },
       height: {
         'sm-screen': 'calc(100svh - 75.6px - 112px)',

@@ -4,6 +4,7 @@ import Image from 'next/image';
 export default function PlatformLink({
   link,
   currentPlatform,
+  isPreviewPage
 }: {
   link: Link;
   currentPlatform?: {
@@ -11,12 +12,13 @@ export default function PlatformLink({
     img: any;
     backgroundColor: string;
   };
+  isPreviewPage?: boolean
 }) {
   return (
     <a
       href={link.platform === 'empty' ? '' : link.link}
       target="_blank"
-      className={`h-[15%] rounded-[8px] ${
+      className={`${isPreviewPage ? "h-[56px]" : "h-[15%]"} rounded-[8px] ${
         link.platform === Platforms.frontendMentor && 'border border-light-gray'
       } flex items-center px-[16px] justify-between ${
         link.platform !== 'empty' && 'cursor-pointer'
@@ -34,7 +36,7 @@ export default function PlatformLink({
             <div className="flex gap-[8px] items-center">
               {link.platform === Platforms.frontendMentor ? (
                 <Image
-                  src={'icon-frontend-mentor-color.svg'}
+                  src={'/icon-frontend-mentor-color.svg'}
                   alt="logo"
                   width={14}
                   height={16}
