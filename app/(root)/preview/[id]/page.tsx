@@ -4,7 +4,6 @@ import { fetchLinks } from '@/lib/actions/link.actions';
 import { fetchUser } from '@/lib/actions/user.actions';
 import { Link, User } from '@/types';
 import { nanoid } from 'nanoid';
-import Image from 'next/image';
 
 export default async function Page({ params }: { params: { id: string } }) {
   const userInfo: User = await fetchUser(params.id);
@@ -16,7 +15,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <div className="absolute top-0 left-0 right-0 h-[357px] bg-primary-purple z-[-1] rounded-b-[32px] hidden md:block" />
       <article className="bg-white max-w-[349px] mx-auto w-full flex flex-col items-center rounded-[24px] px-[56px] gap-[36px] py-[48px] md:shadow-lg">
         <section className="flex flex-col items-center">
-          <Image
+          <img
             src={userInfo.image}
             alt="profile-photo"
             width={304}
