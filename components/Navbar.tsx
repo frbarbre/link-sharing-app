@@ -17,7 +17,7 @@ export default function Navbar({ userId }: { userId: string | null }) {
   const [isCopied, setIsCopied] = useState(false);
 
   function handleCopy() {
-    const baseUrl = 'https://devlinks.frederikbarbre.app';
+    const baseUrl = 'https://devlinks.frederikbarbre.dk';
     const fullUrl = baseUrl + pathname;
     navigator.clipboard.writeText(fullUrl);
     setIsCopied(true);
